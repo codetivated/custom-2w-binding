@@ -5,6 +5,7 @@ import {
   Output,
   EventEmitter,
   output,
+  model,
 } from '@angular/core';
 
 @Component({
@@ -15,11 +16,12 @@ import {
   styleUrl: './rect.component.css',
 })
 export class RectComponent {
-  @Input({ required: true }) size!: { width: string; height: string };
-  @Output() sizeChange = new EventEmitter<{ width: string; height: string }>();
+  // @Input({ required: true }) size!: { width: string; height: string };
+  // @Output() sizeChange = new EventEmitter<{ width: string; height: string }>();
+
+  size = model.required<{ width: string; height: string }>();
 
   onReset() {
-    this.size = { width: '100', height: '100' };
-    this.sizeChange.emit(this.size);
+    this.size.set({ width: '100', height: '100' });
   }
 }
